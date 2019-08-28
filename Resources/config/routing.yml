@@ -1,0 +1,4 @@
+historization_bundle_change_log_history:
+    resource: "@HistorizationBundle/Controller/Api/ChangeLogHistoryController.php"
+    type: annotation
+    prefix: historizationBundle/api/

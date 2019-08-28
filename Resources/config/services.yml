@@ -1,0 +1,15 @@
+services:
+    historization_bundle.listener.entity_changed_listener:
+        class: 'HistorizationBundle\EventListener\EntityChangedListener'
+        arguments:
+        - '@security.token_storage'
+        - '@logger'
+        tags:
+        - { name: doctrine.event_listener, event: onFlush, priority: -255 }
+        - { name: doctrine.event_listener, event: postFlush, priority: -255 }
+
+    historization_bundle.service.historization_service:
+        class: HistorizationBundle\Service\HistorizationService
+        arguments:
+        - '@security.token_storage'
+        - '@doctrine'
