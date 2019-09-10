@@ -52,6 +52,35 @@ Add This Annotation to an Entity Class you want to keep on track
  * )
 ```
 
+Example:
+
+```sql
+/**
+ * @Config(
+ *      historizable="true"
+ * )
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository"
+ * @ORM\Table(name="Category")
+ */
+class Category
+```
+
+For Entities Joined add JoinConfig annotation and set historizeColumnName option to column you want to record on connected Entity
+```sql
+ * @JoinConfig(historizeColumnName="name")
+```
+Example: 
+
+```sql
+    /**
+     * One Cart has One Customer.
+     * @JoinConfig(historizeColumnName="name")
+     * @OneToOne(targetEntity="Customer", inversedBy="cart")
+     * @JoinColumn(name="customer_id", referencedColumnName="id")
+     */
+    private $customer;
+```    
+
 #### Get Historization Logs from Those Endpoints:
 
 RequestType: GET 
